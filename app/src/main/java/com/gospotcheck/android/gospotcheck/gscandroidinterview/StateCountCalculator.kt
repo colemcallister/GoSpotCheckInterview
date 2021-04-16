@@ -23,7 +23,7 @@ class StateCountCalculator {
             }
         }
 
-        return mapOfNationalParkStateCountByState.values.toList().sortedBy { it.totalCount }
+        return mapOfNationalParkStateCountByState.values.toList().sortedByDescending { it.totalCount }
     }
 
 }
