@@ -1,6 +1,7 @@
 package com.gospotcheck.android.gospotcheck.gscandroidinterview
 
 import com.google.common.truth.Truth.assertThat
+import org.junit.Assert.assertEquals
 import org.junit.Test
 
 class StateCountCalculatorTest {
@@ -36,5 +37,25 @@ class StateCountCalculatorTest {
             )
         )
 
+    }
+
+    @Test
+    fun givenAListOfNationalParks_whenGetStateCountsIsCalledAndSorted_ItIsSortedCorrectly() {
+
+        val inputParks = listOf(
+            NationalPark("A", "National Park & Preserve", "CA,AK,CO"),
+            NationalPark("A", "National Park", "AK,CO"),
+            NationalPark("A", null, "RI,AK"),
+            NationalPark("A", null, "IL,IN,PA,ME"),
+            NationalPark("A", null, "CO"),
+            NationalPark("A", "National Park", "CO"),
+            NationalPark("A", "National Park", "NV")
+        )
+
+        val output = subject.getStateCounts(inputParks)
+
+        assertEquals("CO", output[0].state)
+        assertEquals("AK", output[1].state)
+        //No secondary sort specified
     }
 }
